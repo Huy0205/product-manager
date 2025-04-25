@@ -1,4 +1,4 @@
-import {faker} from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import db from '@/db/dexieDB';
 
 let isSeeding = false;
@@ -14,7 +14,6 @@ const seedProducts = async () => {
     }));
 
     await db.products.bulkPut(products);
-    console.log('Database seeded with 1000 products');
     isSeeding = false;
 };
 

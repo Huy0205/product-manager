@@ -1,12 +1,25 @@
+import Swal from "sweetalert2";
+
 function ProductTable({products, onEdit, onDelete}) {
     const handleEdit = (product) => {
         onEdit(product);
     };
 
     const handleDelete = (id) => {
-        if (window.confirm('Are you sure you want to delete this product?')) {
-            onDelete(id);
-        }
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                onDelete(id);
+            }
+        });
     }
 
     return (
